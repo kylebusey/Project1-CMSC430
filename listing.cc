@@ -5,7 +5,9 @@
 // listing
 
 #include <cstdio>
+#include <iostream>
 #include <string>
+#include <queue>
 
 using namespace std;
 
@@ -15,12 +17,16 @@ static int lineNumber;
 static string error = "";
 static int totalErrors = 0;
 static int lexicalErrors = 0;
-static int syntacticErrors = 0;
+static int syntaxErrors = 0;
 static int semanticErrors = 0;
+
+static queue<string> errorQueue;
+
 static ErrorCategories errorCategory;
 static string message = "";
 
 static void displayErrors();
+void print_queue(std::queue<string> &queue);
 
 void firstLine()
 {
@@ -37,26 +43,59 @@ void nextLine()
 
 int lastLine()
 {
+
 	printf("\r");
 	displayErrors();
 	printf("     \n");
+
+	if(totalErrors > 0) {
+		printf("Lexical errors: %4d", lexicalErrors);
+		printf("Syntax errors: %4d", syntaxErrors);
+		printf("Semantic errors: %4d", semanticErrors);
+
+	} else {
+		printf("Compiled Successfully");
+	}
+
+	
 
 	return totalErrors;
 }
     
 void appendError(ErrorCategories errorCategory, string message)
 {
+
 	string messages[] = { "Lexical Error, Invalid Character ", "",
 		"Semantic Error, ", "Semantic Error, Duplicate Identifier: ",
 		"Semantic Error, Undeclared " };
 
 	error = messages[errorCategory] + message;
+	errorQueue.push(error);
 	totalErrors++;
+
+	if(errorCategory == LEXICAL || errorCategory == DUPLICATE_IDENTIFIER) {
+		lexicalErrors++;
+	} else if (errorCategory == SYNTAX) {
+		syntaxErrors++;
+	} else if (errorCategory == GENERAL_SEMANTIC) {
+		semanticErrors++;
+	}
+
 }
 
 void displayErrors()
 {
-	if (error != "")
-		printf("%s\n", error.c_str());
+	print_queue(errorQueue);
 	error = "";
 }
+
+void print_queue(std::queue<string> &queue) {
+	while( !queue.empty() )
+    {
+       std::cout << queue.front();
+       queue.pop();
+    }
+    std::cout << std::endl;
+}
+
+
