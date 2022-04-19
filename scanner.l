@@ -52,7 +52,7 @@ integer		{ ECHO; return(INTEGER); }
 is		{ ECHO; return(IS); }
 or		{ ECHO; return(OROP); }
 not 	{ ECHO; return (NOTOP); }
-reduce		{ ECHO; return REDUCE; }
+reduce		{ ECHO; return (REDUCE); }
 rem			{ ECHO; return(REMOP); }
 returns		{ ECHO; return(RETURNS); }
 true		{ ECHO; return(BOOL_LITERAL); }
