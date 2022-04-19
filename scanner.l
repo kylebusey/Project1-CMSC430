@@ -58,25 +58,9 @@ returns		{ ECHO; return(RETURNS); }
 true		{ ECHO; return(BOOL_LITERAL); }
 false		{ ECHO; return(BOOL_LITERAL); }
 and		{ ECHO; return(ANDOP); }
-{id}		{ ECHO; return(IDENTIFIER);}
+{id}		{ ECHO; return(IDENTIFIER); }
 {int}		{ ECHO; return(INT_LITERAL); }
 {punc}		{ ECHO; return(yytext[0]); }
 {real}	{ ECHO; return (REAL_LITERAL); }
 .		{ ECHO; appendError(LEXICAL, yytext); }
 %%
-
-int main()
-{
-	firstLine();
-	
-	FILE *file = fopen("lexemes.txt", "wa"); 
-	int token = yylex();
-	while (token)
-	{
-		fprintf(file, "%d %s\n", token, yytext);
-		token = yylex();
-	}
-	lastLine();
-	fclose(file);
-	return 0;
-}
