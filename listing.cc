@@ -49,9 +49,9 @@ int lastLine()
 	printf("     \n");
 
 	if(totalErrors > 0) {
-		printf("Lexical errors: %4d", lexicalErrors);
-		printf("Syntax errors: %4d", syntaxErrors);
-		printf("Semantic errors: %4d", semanticErrors);
+		printf("Lexical errors: %4d\n", lexicalErrors);
+		printf("Syntax errors: %4d\n", syntaxErrors);
+		printf("Semantic errors: %4d\n", semanticErrors);
 
 	} else {
 		printf("Compiled Successfully");
@@ -95,6 +95,7 @@ void print_queue(std::queue<string> &queue)
     {
        std::cout << queue.front();
        queue.pop();
+	   printf("\n");
     }
     std::cout << std::endl;
 }
