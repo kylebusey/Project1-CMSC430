@@ -64,3 +64,19 @@ and		{ ECHO; return(ANDOP); }
 {real}	{ ECHO; return (REAL_LITERAL); }
 .		{ ECHO; appendError(LEXICAL, yytext); }
 %%
+
+int main()
+{
+	firstLine();
+	
+	FILE *file = fopen("lexemes.txt", "wa"); 
+	int token = yylex();
+	while (token)
+	{
+		fprintf(file, "%d %s\n", token, yytext);
+		token = yylex();
+	}
+	lastLine();
+	fclose(file);
+	return 0;
+}
