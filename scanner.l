@@ -20,7 +20,7 @@ ws		[ \t\r]+
 comment		\-\-.*\n
 comments	\/\/.*\n
 line		[\n]
-id		[A-Za-z]([_]?[A-Za-z0-9]*
+id		[A-Za-z]([_]?[A-Za-z0-9])*
 digit		[0-9]
 int		{digit}+
 real	[0-9]+([.])(([0-9]+)?((E|e)?)(\+|-)?([0-9]))*
