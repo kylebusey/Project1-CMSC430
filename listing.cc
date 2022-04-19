@@ -14,6 +14,11 @@ using namespace std;
 static int lineNumber;
 static string error = "";
 static int totalErrors = 0;
+static int lexicalErrors = 0;
+static int syntacticErrors = 0;
+static int semanticErrors = 0;
+static ErrorCategories errorCategory;
+static string message = "";
 
 static void displayErrors();
 
@@ -35,6 +40,7 @@ int lastLine()
 	printf("\r");
 	displayErrors();
 	printf("     \n");
+
 	return totalErrors;
 }
     
