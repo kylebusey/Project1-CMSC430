@@ -89,7 +89,8 @@ void displayErrors()
 	error = "";
 }
 
-void print_queue(std::queue<string> &queue) {
+void print_queue(std::queue<string> &queue) 
+{
 	while( !queue.empty() )
     {
        std::cout << queue.front();
@@ -98,20 +99,6 @@ void print_queue(std::queue<string> &queue) {
     std::cout << std::endl;
 }
 
-int main()
-{
-	firstLine();
 
-	FILE *file = fopen("lexemes.txt", "wa"); 
-	int token = yylex();
-	while (token)
-	{
-		fprintf(file, "%d %s\n", token, yytext);
-		token = yylex();
-	}
-	lastLine();
-	fclose(file);
-	return 0;
-}
 
 
